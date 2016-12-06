@@ -25,6 +25,7 @@ import org.json.simple.parser.JSONParser;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -33,7 +34,11 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class SimpleTest {
+import com.saucelabs.common.SauceOnDemandAuthentication;
+import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import com.saucelabs.junit.SauceOnDemandTestWatcher;
+
+public class SimpleTest implements SauceOnDemandSessionIdProvider {
 
     private AppiumDriver<WebElement> driver;
 
@@ -41,18 +46,47 @@ public class SimpleTest {
 
     private static final int MINIMUM = 0;
     private static final int MAXIMUM = 10;
+    private String sessionId;
+
+    /**
+     * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
+     * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
+     */
+
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication();
+    public static final String USERNAME = System.getenv("SAUCE_USERNAME");
+    public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+    public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+
+    /**
+     * JUnit Rule which will mark the Sauce Job as passed/failed when the test succeeds or fails.
+     */
+    public @Rule
+    SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
 
     @Before
     public void setUp() throws Exception {
-        // set up appium
-        File appDir = new File(System.getProperty("user.dir"), "../../../apps/TestApp/build/release-iphonesimulator");
-        File app = new File(appDir, "TestApp.app");
+        //String sauceUserName = authentication.getUsername();
+        //String sauceAccessKey = authentication.getAccessKey();
+
+        // The following two lines are needed only when running locally on my machine.
+        // When running the test on Saucelab, comment out the following lines.
+        //File appDir = new File(System.getProperty("user.dir"), "../../../apps/TestApp/build/release-iphonesimulator");
+        //File app = new File(appDir, "TestApp.app");
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformVersion", "10.1");
-        capabilities.setCapability("deviceName", "iPhone 7 Plus");
-        capabilities.setCapability("app", app.getAbsolutePath());
-        driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        capabilities.setCapability("appiumVersion", "1.6.1");
+        capabilities.setCapability("platformVersion","10.0");
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("browserName", "");
+        capabilities.setCapability("deviceName","iPhone 7 Plus Simulator");
+        // Test against the app I uploaded to Saucelab storage.
+        capabilities.setCapability("app", "sauce-storage:TestApp.app.zip");
+
+        driver = new IOSDriver<>(new URL(URL), capabilities);
         values = new ArrayList<Integer>();
+        this.sessionId = driver.getSessionId().toString();
+
     }
 
     @After
@@ -76,8 +110,10 @@ public class SimpleTest {
     @Test
     public void testUIComputation() throws Exception {
 
-        driver.switchTo().alert().accept();
-        Thread.sleep(3000); //Due to the slowness of closing Alerts, I needed to add a sleep here.
+        //The following two lines are necessary only on my local machine. On Saucelabs, the alert button does not show.
+        //driver.switchTo().alert().accept();
+        //Thread.sleep(3000); //Due to the slowness of closing Alerts, I needed to add a sleep here.
+
         // populate text fields with values
         populate();
         // trigger computation by using the button
@@ -88,4 +124,8 @@ public class SimpleTest {
         assertEquals(String.valueOf(values.get(0) + values.get(1)), texts.getText());
     }
 
+
+    public String getSessionId() {
+        return sessionId;
+    }
 }

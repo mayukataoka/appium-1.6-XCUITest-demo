@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.saucelabs.appium.SimpleTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 190.691 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 296.131 sec
