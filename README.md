@@ -2,8 +2,8 @@
 ##appium-1.6-XCUITest-demo
 
 I created a sample iOS Appium test with Java. 
-The newly announced 1.6 Appium did not have any sample code so updated the old sample code from Saucelabs and made it work with
-the latest Appium. Verified the test execution with Xcode 8, iOS SDK 10.0 and iOS simulator iphone plus 7 on SauceLab. 
+The newly announced 1.6 Appium did not have any sample code so updated the old non-functional sample code from Saucelabs and made it work with
+the latest Appium 1.6. Verified the test execution with Xcode 8, iOS SDK 10.0 and iOS simulator iphone plus 7 on SauceLabs. 
 
 ##To compile and run all tests, run:
 
