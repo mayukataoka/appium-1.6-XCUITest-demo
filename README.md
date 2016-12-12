@@ -3,7 +3,7 @@
 
 I created a sample iOS Appium test with Java. 
 I could not find a sample code for the newly announced 1.6 Appium in December 2016. So I updated the old non-functional sample code originally written by Saucelabs and made it work with
-the latest Appium 1.6. Verified the test execution with Xcode 8, iOS SDK 10.0 and iOS simulator iphone plus 7 on SauceLabs. I also got the test running against Saucelab devices on Jenkins. Please feel free to look at the Jenkins config for your reference. 
+the latest Appium 1.6. Verified the test execution with iOS SDK 10.0 and iOS simulator iphone plus 7 on SauceLabs. I also got the test running against Saucelab devices on Jenkins. Please feel free to look at the Jenkins config for your reference. 
 
 ##To compile and run all tests, run:
 
@@ -27,12 +27,18 @@ This is needed if you are running your tests locally.
 <img src="assets/saucelab-test-result.png" width="800">
 
 ##Here is how I configured Saucelabs in my Jenkins job.
+
 <img src="assets/saucelab-jenkins-config.png" width="800">
 
 ##Here are the Jenkins plugins I used
 
+Git plugin, Junit plugin, Sauce OnDemand Plugin
+ 
 ##Here is how the Sauce Labs Test Publisher on Jenkins looks like.
 
 <img src="assets/saucelab-Jenkins-test-report.png" width="800">
 
-  
+## How to upload the app to Saucelab storage
+
+If your test job is separate from the main job, use Copy Artifact Plugin to get the app or ipa. Using the method described in https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin, upload the app to Sauce Storage. 
+   
