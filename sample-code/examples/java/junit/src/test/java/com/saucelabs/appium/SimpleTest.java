@@ -81,7 +81,7 @@ public class SimpleTest implements SauceOnDemandSessionIdProvider {
         capabilities.setCapability("deviceName","iPhone 7 Plus Simulator");
 
         // Test against the app I uploaded to Saucelab storage.
-        //capabilities.setCapability("app", "sauce-storage:TestApp.app.zip");
+        capabilities.setCapability("app", "sauce-storage:TestApp.app.zip");
 
         driver = new IOSDriver<>(new URL(URL), capabilities);
         values = new ArrayList<Integer>();
