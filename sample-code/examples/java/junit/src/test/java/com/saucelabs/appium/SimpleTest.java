@@ -66,8 +66,6 @@ public class SimpleTest implements SauceOnDemandSessionIdProvider {
 
     @Before
     public void setUp() throws Exception {
-        //String sauceUserName = authentication.getUsername();
-        //String sauceAccessKey = authentication.getAccessKey();
 
         // The following two lines are needed only when running locally on my machine.
         // When running the test on Saucelab, comment out the following lines.
@@ -77,16 +75,13 @@ public class SimpleTest implements SauceOnDemandSessionIdProvider {
         //Use https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/ to doublecheck the configs
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("appiumVersion", "1.6.2");
-        //capabilities.setCapability("appiumVersion", "1.5.3");
-        //capabilities.setCapability("platformVersion","9.3");
         capabilities.setCapability("platformVersion","10.0");
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("browserName", "");
         capabilities.setCapability("deviceName","iPhone 7 Plus Simulator");
-        //capabilities.setCapability("deviceName","iPhone 6s Device");
 
         // Test against the app I uploaded to Saucelab storage.
-        capabilities.setCapability("app", "sauce-storage:TestApp.app.zip");
+        //capabilities.setCapability("app", "sauce-storage:TestApp.app.zip");
 
         driver = new IOSDriver<>(new URL(URL), capabilities);
         values = new ArrayList<Integer>();
