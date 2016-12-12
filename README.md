@@ -43,7 +43,7 @@ Git plugin, Junit plugin, Sauce OnDemand Plugin
 
 ## How to upload the app to Saucelab storage
 
-If your test job is separate from the main job, use Copy Artifact Plugin to get the app or ipa. Using the method described in https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin, upload the app to Sauce Storage. 
+If your test job is separate from the main job, use Copy Artifact Plugin to get the app or ipa. Using the method described in https://wiki.saucelabs.com/display/DOCS/Uploading+Mobile+Applications+to+Sauce+Storage+for+Testing, upload the app to Sauce Storage. 
    
 ## Can I run the 1.6 Appium tests on Amazon Device Farm? 
 
