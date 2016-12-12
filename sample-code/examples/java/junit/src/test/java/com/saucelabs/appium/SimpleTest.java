@@ -74,12 +74,17 @@ public class SimpleTest implements SauceOnDemandSessionIdProvider {
         //File appDir = new File(System.getProperty("user.dir"), "../../../apps/TestApp/build/release-iphonesimulator");
         //File app = new File(appDir, "TestApp.app");
 
+        //Use https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/ to doublecheck the configs
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("appiumVersion", "1.6.1");
+        capabilities.setCapability("appiumVersion", "1.6.2");
+        //capabilities.setCapability("appiumVersion", "1.5.3");
+        //capabilities.setCapability("platformVersion","9.3");
         capabilities.setCapability("platformVersion","10.0");
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("browserName", "");
         capabilities.setCapability("deviceName","iPhone 7 Plus Simulator");
+        //capabilities.setCapability("deviceName","iPhone 6s Device");
+
         // Test against the app I uploaded to Saucelab storage.
         capabilities.setCapability("app", "sauce-storage:TestApp.app.zip");
 
