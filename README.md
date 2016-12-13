@@ -4,9 +4,7 @@
 I created a sample iOS Appium test with Java. 
 I could not find a sample code for the newly announced 1.6 Appium in December 2016. 
 So I updated the old non-functional sample code originally written by Saucelabs and made it work with
-the latest Appium 1.6. Verified the test execution with iOS SDK 10.0 and iOS simulator iphone plus 7 on SauceLabs. 
-I also got the test running against Saucelab devices on Jenkins. 
-I attached the Jenkins Saucelab config screenshots at the end of this Readme file. 
+the latest Appium 1.6. Verified the test execution with iOS SDK 10.0 and iOS simulator iphone plus 7 on SauceLabs. I attached the Jenkins Saucelab config screenshots at the end of this Readme file. 
 
 ##To compile and run all tests, run:
 
